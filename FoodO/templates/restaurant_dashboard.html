@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Restaurant Panel | Food Waste Management</title>
+    <style>
+        *{
+            margin:0;
+            padding:0;
+            box-sizing:border-box;
+            font-family: 'Segoe UI', sans-serif;
+        }
+
+        body{
+            background: linear-gradient(to right, #ffecd2, #fcb69f);
+            min-height:100vh;
+        }
+
+        .nav{
+            background:#d84315;
+            color:white;
+            padding:15px 30px;
+            font-size:20px;
+            display:flex;
+            justify-content:space-between;
+            align-items:center;
+        }
+
+        .logout-btn{
+            background:white;
+            color:#d84315;
+            padding:8px 16px;
+            border-radius:8px;
+            text-decoration:none;
+            font-size:14px;
+            font-weight:bold;
+        }
+
+        .container{
+            max-width:600px;
+            margin:40px auto;
+            background:white;
+            padding:30px;
+            border-radius:20px;
+            box-shadow:0 10px 25px rgba(0,0,0,0.2);
+        }
+
+        h2{
+            text-align:center;
+            color:#d84315;
+            margin-bottom:10px;
+        }
+
+        p{
+            text-align:center;
+            color:#666;
+            margin-bottom:25px;
+            font-size:14px;
+        }
+
+        label{
+            font-weight:600;
+            margin-top:10px;
+            display:block;
+            color:#444;
+        }
+
+        input, textarea, select{
+            width:100%;
+            padding:12px;
+            margin-top:6px;
+            border-radius:10px;
+            border:1px solid #ccc;
+            font-size:14px;
+        }
+
+        textarea{
+            resize:none;
+        }
+
+        button{
+            width:100%;
+            margin-top:20px;
+            padding:14px;
+            background:#d84315;
+            color:white;
+            border:none;
+            border-radius:12px;
+            font-size:16px;
+            font-weight:bold;
+            cursor:pointer;
+        }
+
+        button:hover{
+            background:#bf360c;
+        }
+
+        footer{
+            position:fixed;
+            bottom:0;
+            width:100%;
+            background:rgba(0,0,0,0.3);
+            color:white;
+            text-align:center;
+            padding:10px;
+            font-size:13px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="nav">
+    <div>🍴 Restaurant Dashboard</div>
+    <a href="{% url 'login'%}" class="logout-btn">Logout</a>
+</div>
+
+<div class="container">
+    <h2>Donate Surplus Food</h2>
+    <p>Fill the form to donate leftover food</p>
+
+<form method="post">
+    {% csrf_token %}
+
+    <label>Food Name</label>
+    <input type="text" name="food_name" placeholder="Enter food name" required>
+
+    <label>Food Type</label>
+    <select name="food_type" required>
+        <option value="">Select type</option>
+        <option>Veg</option>
+        <option>Non-Veg</option>
+        <option>Both</option>
+    </select>
+
+    <label>Quantity (in Kg)</label>
+    <input type="number" name="quantity" placeholder="Enter quantity" required>
+
+    <label>Pickup Location</label>
+    <input type="text" name="location" placeholder="Enter pickup address" required>
+
+    <label>Contact Number</label>
+    <input type="tel" name="phone" placeholder="Enter phone number" required>
+
+    <label>Available Till (Time)</label>
+    <input type="time" name="available_till" required>
+
+    <label>Additional Notes</label>
+    <textarea name="notes" rows="3" placeholder="Any special instructions"></textarea>
+
+    <button type="submit">Submit Food Donation</button>
+</form>
+
+<h2 style="margin-top:30px;">Pickup Requests</h2>
+
+{% if requests %}
+    {% for r in requests %}
+    <div style="background:#fff3e0; padding:15px; margin-top:10px; border-radius:12px;">
+        <p><b>Food:</b> {{ r.donation.food_name }}</p>
+        <p><b>NGO:</b> {{ r.ngo_name }}</p>
+        <p><b>Status:</b> {{ r.status }}</p>
+
+        {% if r.status == "Pending" %}
+        <form method="post" style="margin-top:10px;">
+            {% csrf_token %}
+            <input type="hidden" name="request_id" value="{{ r.id }}">
+            <button type="submit" name="action" value="accept">✅ Accept</button>
+            <button type="submit" name="action" value="reject">❌ Reject</button>
+        </form>
+        {% endif %}
+    </div>
+    {% endfor %}
+{% else %}
+    <p>No pickup requests yet.</p>
+{% endif %}
+
+</div>
+
+<footer>
+    © 2025 Food Waste Management System
+</footer>
+
+</body>
+</html>

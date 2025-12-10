@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Food Waste Management System</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: Arial, sans-serif;
+    }
+
+    body {
+      min-height: 100vh;
+      background: linear-gradient(to right, #1d976c, #93f9b9);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    nav {
+      width: 100%;
+      background-color: rgba(0,0,0,0.3);
+      padding: 15px 50px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      color: white;
+    }
+
+    .logo {
+      font-size: 24px;
+      font-weight: bold;
+      letter-spacing: 1px;
+    }
+
+    .nav-buttons a {
+      text-decoration: none;
+      color: rgb(250, 245, 245);
+      margin-left: 15px;
+      padding: 10px 20px;
+      border: 2px solid rgb(239, 231, 231);
+      border-radius: 30px;
+      transition: 0.3s ease;
+    }
+
+    .nav-buttons a:hover {
+      background-color: rgb(21, 224, 102);
+      color: #dce9e2;
+    }
+
+    .hero {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      color: white;
+      padding: 30px;
+    }
+
+    .hero h1 {
+      font-size: 48px;
+      margin-bottom: 15px;
+    }
+
+    .hero p {
+      font-size: 20px;
+      max-width: 700px;
+      margin-bottom: 30px;
+    }
+
+    .action-buttons a {
+      text-decoration: none;
+      background-color: white;
+      color: #f3f7f5;
+      padding: 15px 35px;
+      margin: 10px;
+      border-radius: 35px;
+      font-size: 18px;
+      font-weight: bold;
+      transition: 0.3s ease;
+      display: inline-block;
+    }
+
+    .action-buttons a:hover {
+      background-color: #eef2f1;
+      color: white;
+      border: 2px solid white;
+    }
+
+    footer {
+      width: 100%;
+      background-color: rgba(0,0,0,0.3);
+      text-align: center;
+      padding: 10px;
+      color: white;
+      font-size: 14px;
+      position: fixed;
+      bottom: 0;
+      left: 0;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Navigation -->
+  <nav>
+    <div class="logo">Food Waste Management</div>
+    <div class="nav-buttons">
+      <a href="{% url 'ngo_login' %}">NGO Login</a>
+      <a href="{% url 'restaurant_login' %}">Restaurant Login</a>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <div class="hero">
+    <h1>Save Food, Save Lives</h1>
+    <p>
+      Our platform connects restaurants with NGOs to distribute surplus food
+      to those in need, reducing food waste and helping communities.
+    </p>
+    <!-- <div class="action-buttons">
+      <a href="{% url 'ngo_login' %}">NGO Login</a>
+      <a href="{% url 'restaurant_login' %}">Restaurant Login</a>
+  </div> -->
+
+  <footer>
+    © 2025 Food Waste Management System
+  </footer>
+
+</body>
+</html>

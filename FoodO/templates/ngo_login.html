@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>NGO Login | Food Waste Management</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', sans-serif;
+        }
+
+        body {
+            background: linear-gradient(to right, #a8e063, #56ab2f);
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .login-box {
+            background: white;
+            width: 360px;
+            padding: 40px;
+            border-radius: 16px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+            text-align: center;
+        }
+
+        .login-box h2 {
+            color: #2f7d32;
+            margin-bottom: 10px;
+        }
+
+        .login-box p {
+            font-size: 14px;
+            color: #666;
+            margin-bottom: 25px;
+        }
+
+        input {
+            width: 100%;
+            padding: 12px;
+            margin: 12px 0;
+            border-radius: 8px;
+            border: 1px solid #ccc;
+            font-size: 15px;
+        }
+
+        button {
+            width: 100%;
+            padding: 12px;
+            background-color: #2f7d32;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            margin-top: 15px;
+        }
+
+        button:hover {
+            background-color: #256628;
+        }
+
+        .emoji {
+            font-size: 35px;
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="login-box">
+    <div class="emoji">🌱</div>
+    <h2>NGO Login</h2>
+    <p>Login to collect and rescue surplus food</p>
+
+    <form method="post">
+        {% csrf_token %}
+        <input type="text" name="username" placeholder="NGO Username" required>
+        <input type="password" name="password" placeholder="Password" required>
+        <button type="submit">Login</button>
+    </form>
+</div>
+
+</body>
+</html>
